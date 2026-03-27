@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="description" content="Getting Home — A text-based city survival game">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Getting Home</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- Intro Screen -->
+    <div id="intro-screen" class="screen active">
+      <div class="screen-content intro-content">
+        <h1 class="game-title">Getting Home</h1>
+        <p class="tagline">Twelve blocks. Midnight. On your own.</p>
+        <div id="intro-narrative" class="narrative-box"></div>
+        <div class="name-input-group">
+          <label for="player-name">Your name</label>
+          <input type="text" id="player-name" placeholder="Elena" maxlength="20" autocomplete="off">
+        </div>
+        <button id="start-btn" class="btn btn-primary">Start Walking</button>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+      <div class="screen-content">
+        <div id="hud">
+          <div id="stats-bar">
+            <div class="stat">
+              <span class="stat-icon">&#9829;</span>
+              <span class="stat-label">Courage</span>
+              <div class="stat-bar"><div class="stat-fill" id="courage-fill"></div></div>
+              <span class="stat-value" id="courage-value">5</span>
+            </div>
+            <div class="stat">
+              <span class="stat-icon">&#9733;</span>
+              <span class="stat-label">Smarts</span>
+              <div class="stat-bar"><div class="stat-fill" id="streetSmarts-fill"></div></div>
+              <span class="stat-value" id="streetSmarts-value">5</span>
+            </div>
+            <div class="stat">
+              <span class="stat-icon">&#9889;</span>
+              <span class="stat-label">Stamina</span>
+              <div class="stat-bar"><div class="stat-fill" id="stamina-fill"></div></div>
+              <span class="stat-value" id="stamina-value">10</span>
+            </div>
+          </div>
+          <div id="progress-bar">
+            <div id="progress-fill"></div>
+          </div>
+          <div id="progress-text">Block 1 of 12</div>
+        </div>
+
+        <div id="narrative">
+          <h2 id="encounter-title"></h2>
+          <div id="encounter-text" class="narrative-box"></div>
+        </div>
+
+        <div id="choices"></div>
+
+        <div id="resolution" class="hidden">
+          <div id="resolution-text" class="narrative-box"></div>
+          <div id="stat-changes"></div>
+          <button id="continue-btn" class="btn btn-primary">Continue</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ending Screen -->
+    <div id="ending-screen" class="screen">
+      <div class="screen-content ending-content">
+        <h1 id="ending-title"></h1>
+        <div id="ending-text" class="narrative-box"></div>
+        <div id="ending-stats"></div>
+        <button id="restart-btn" class="btn btn-primary">Walk Again</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/player.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/encounters.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
