@@ -17,12 +17,14 @@ const Encounters = {
     return encounter.choices.map((choice, index) => {
       const available = this.isChoiceAvailable(choice, player);
       const requirementText = this.getRequirementText(choice, player);
+      const isHighRisk = choice.statCheck && choice.statCheck.difficulty >= 12;
       return {
         index,
         text: choice.text,
         available,
         requirementText,
-        hasStatCheck: !!choice.statCheck
+        hasStatCheck: !!choice.statCheck,
+        isHighRisk
       };
     });
   },

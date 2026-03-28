@@ -92,7 +92,9 @@ const Game = {
 
   getEnding() {
     if (Player.isExhausted()) {
-      return EndingsData.failure;
+      if (this.currentBlock <= 4) return EndingsData.failure_early;
+      if (this.currentBlock <= 8) return EndingsData.failure_mid;
+      return EndingsData.failure_late;
     }
 
     // Check for kind ending

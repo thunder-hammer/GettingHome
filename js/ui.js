@@ -54,6 +54,7 @@ const UI = {
     screens.forEach(s => {
       if (s === target) return;
       s.classList.remove('visible');
+      s.classList.remove('failure-ending');
       setTimeout(() => s.classList.remove('active'), 400);
     });
 
@@ -108,6 +109,7 @@ const UI = {
     choicesData.forEach((choice, i) => {
       const btn = document.createElement('button');
       btn.className = 'choice-btn';
+      if (choice.isHighRisk) btn.classList.add('high-risk');
       btn.dataset.index = choice.index;
 
       let html = choice.text;
@@ -171,19 +173,31 @@ const UI = {
   // ---- Ending ----
 
   showEnding(ending, player) {
+    const isFailure = !!ending.isFailure;
+    const endingScreen = document.getElementById('ending-screen');
+
+    if (isFailure) {
+      endingScreen.classList.add('failure-ending');
+    } else {
+      endingScreen.classList.remove('failure-ending');
+    }
+
     this.showScreen('ending-screen');
     this.elements.endingTitle.textContent = '';
     this.elements.endingText.textContent = '';
     this.elements.endingStats.innerHTML = '';
 
+    const initialDelay = isFailure ? 1800 : 600;
+    const typeSpeed = isFailure ? 40 : 28;
+
     setTimeout(() => {
       this.elements.endingTitle.textContent = ending.title;
       this.elements.endingTitle.classList.add('fade-in');
 
-      this.typewrite(this.elements.endingText, ending.text, 28, () => {
+      this.typewrite(this.elements.endingText, ending.text, typeSpeed, () => {
         this.showEndingStats(player);
       });
-    }, 600);
+    }, initialDelay);
   },
 
   showEndingStats(player) {

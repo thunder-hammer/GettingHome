@@ -48,6 +48,18 @@ const EncounterData = [
           text: `Your phone light catches a shape near the dumpster \u2014 just a pile of cardboard, but it looks too much like a person in the shadows. You back away and take the long way around.`,
           statChanges: { stamina: -1 }
         }
+      },
+      {
+        text: 'Sprint through the pitch-dark end at full speed',
+        statCheck: { stat: 'courage', difficulty: 12 },
+        success: {
+          text: `You kill your phone light and run blind into the darkness. Your feet slap wet concrete, your shoulder clips a wall — but you burst through to the other side in seconds, blood singing. You feel invincible.`,
+          statChanges: { courage: 2, stamina: 2 }
+        },
+        failure: {
+          text: `Halfway through the dark you trip hard on something — a pipe, a pallet — and go down on your hands and knees. Pain shoots through your wrist. You crawl up and limp the rest of the way out, palms bleeding, shaking all over.`,
+          statChanges: { stamina: -3, courage: -2 }
+        }
       }
     ]
   },
@@ -85,6 +97,18 @@ const EncounterData = [
         success: {
           text: `You cut across the street without a word, putting two lanes of empty asphalt between you. He shouts something after you, but you don\u2019t catch it. You don\u2019t look back. Keep moving.`,
           statChanges: { stamina: -1 }
+        }
+      },
+      {
+        text: 'Shove past him and run',
+        statCheck: { stat: 'courage', difficulty: 12 },
+        success: {
+          text: `You drop your shoulder and push through hard. He stumbles back, startled — didn\u2019t expect that. You\u2019re already running. Behind you, silence. He didn\u2019t follow. Your heart is a jackhammer but your legs feel strong. Nobody\u2019s stopping you tonight.`,
+          statChanges: { courage: 2, stamina: 1 }
+        },
+        failure: {
+          text: `You try to shove past but he grabs your arm. You wrench free, stumbling, and run — but he got your sleeve and something ripped. You don\u2019t stop running for three blocks. When you finally do, you\u2019re gasping, trembling, and something in your shoulder doesn\u2019t feel right.`,
+          statChanges: { courage: -2, stamina: -3 }
         }
       }
     ]
@@ -196,6 +220,19 @@ const EncounterData = [
           text: `\u201CNo thanks.\u201D You step back and make a point of looking at his license plate. He notices, gives an awkward nod, and drives off. You repeat the plate number under your breath a few times. Smart habit.`,
           statChanges: { streetSmarts: 1 }
         }
+      },
+      {
+        text: 'Get in — but keep one hand on the door handle',
+        statCheck: { stat: 'streetSmarts', difficulty: 13 },
+        decision: 'risky-ride',
+        success: {
+          text: `You memorize the plate, text it to yourself, and climb in with your hand on the handle. You watch every turn like a hawk. He drives you five blocks — five — and drops you with a tired smile. You saved your legs and kept your wits. Calculated risk, perfect execution.`,
+          statChanges: { stamina: 4, streetSmarts: 2 }
+        },
+        failure: {
+          text: `You get in. He takes a turn you don\u2019t recognize. Your stomach drops. "Shortcut," he says, but the street is completely dark. You yank the handle and bail at a red light, hitting the pavement hard. Your knee screams. You limp away fast, not looking back, not breathing right.`,
+          statChanges: { stamina: -3, courage: -2, streetSmarts: -1 }
+        }
       }
     ]
   },
@@ -234,6 +271,18 @@ const EncounterData = [
           text: `You follow the sidewalk east, around the construction zone and back. It\u2019s longer than you\u2019d like and your feet are starting to feel every step. But at least you\u2019re on solid, well-lit ground.`,
           statChanges: { stamina: -2 }
         }
+      },
+      {
+        text: 'Climb over the excavator and drop down the other side',
+        statCheck: { stat: 'courage', difficulty: 12 },
+        success: {
+          text: `You grab the tread of the excavator and haul yourself up, swinging over the cab and dropping into soft dirt on the other side. Your hands are greasy and your heart is pounding, but you just cut through in thirty seconds. Reckless and brilliant.`,
+          statChanges: { courage: 2, stamina: 2 }
+        },
+        failure: {
+          text: `You make it onto the excavator but your foot slips on the greasy cab. You slide down the far side wrong, landing hard on a pile of rebar. Something cuts through your jeans. You hobble away bleeding, cursing yourself for being this stupid.`,
+          statChanges: { stamina: -4, courage: -1 }
+        }
       }
     ]
   },
@@ -271,6 +320,18 @@ const EncounterData = [
         failure: {
           text: `Your attempt at casual doesn\u2019t quite land. \u201CHey, you coming in? Bar\u2019s closed!\u201D Laughter. You smile awkwardly and keep walking, picking up the pace once you\u2019re past. Close enough.`,
           statChanges: {}
+        }
+      },
+      {
+        text: 'Walk straight through and tell them to back off',
+        statCheck: { stat: 'courage', difficulty: 13 },
+        success: {
+          text: `You walk right into the middle of the group. Someone opens their mouth and you cut them off — "Don\u2019t." One word, ice-cold. The laughter dies. They part like water. You walk through without breaking stride, adrenaline turning every nerve to steel.`,
+          statChanges: { courage: 3 }
+        },
+        failure: {
+          text: `You try to walk through tough but the biggest one steps in front of you. "What did you say?" The group circles. Someone pushes you from behind. You stumble, catch yourself, and bolt. They don\u2019t chase — just laugh — but you run for two blocks anyway, legs burning, pride shattered.`,
+          statChanges: { courage: -2, stamina: -3 }
         }
       }
     ]
@@ -439,6 +500,18 @@ const EncounterData = [
         failure: {
           text: `You try to get a photo but your camera takes too long to focus in the dark. The flash goes off. You shove your phone away and walk fast, feeling like you just announced yourself to the whole block.`,
           statChanges: { stamina: -1, courage: -1 }
+        }
+      },
+      {
+        text: 'Walk right up and look inside',
+        statCheck: { stat: 'courage', difficulty: 13 },
+        success: {
+          text: `You walk straight to the van and look in through the cracked door. Boxes. Dolly. Manifest clipboard. Just a delivery van. The driver comes around the corner with coffee and jumps when he sees you. "Jesus — you scared me." You almost laugh. Fear feeds on distance; up close, it was nothing.`,
+          statChanges: { courage: 3, streetSmarts: 1 }
+        },
+        failure: {
+          text: `You walk up to the van and peer inside. The door suddenly slides open wide — a figure in the dark, right there. You scream and run. Behind you, someone shouts "Hey! HEY!" You don\u2019t stop. You don\u2019t look back. Three blocks of blind sprinting before your legs finally buckle.`,
+          statChanges: { stamina: -4, courage: -2 }
         }
       }
     ]
@@ -686,19 +759,210 @@ const EncounterData = [
         }
       }
     ]
+  },
+  {
+    id: 'the-underpass',
+    title: 'Under the Highway',
+    text: `The pedestrian route funnels you toward a highway underpass — two hundred feet of stained concrete, humming fluorescent tubes with half the bulbs dead, and a smell that mixes exhaust with something worse. Shapes move in the shadows along the wall. Someone has a small fire going in a barrel near the far end. There is no other way across the highway.`,
+    choices: [
+      {
+        text: 'Walk through quickly, eyes forward',
+        statCheck: { stat: 'courage', difficulty: 10 },
+        success: {
+          text: `You keep your pace steady and your eyes straight ahead. Someone mutters as you pass. The fire crackles. Footsteps echo — yours. You emerge on the other side and the night air hits your face like cold water. Through.`,
+          statChanges: { courage: 1 }
+        },
+        failure: {
+          text: `You\u2019re halfway through when someone steps into your path. "Got a light?" You shake your head and try to go around, but another figure appears behind you. You freeze. After a long second, they part and let you through. You walk the rest of the way on legs that won\u2019t stop shaking.`,
+          statChanges: { courage: -2, stamina: -2 }
+        }
+      },
+      {
+        text: 'Hug the far wall and move fast',
+        statCheck: { stat: 'streetSmarts', difficulty: 10 },
+        success: {
+          text: `You pick the wall farthest from the barrel fire and move quick, keeping your footsteps light. You read the space — who\u2019s sleeping, who\u2019s awake, where the gaps are. You thread through without anyone noticing. Street instinct.`,
+          statChanges: { streetSmarts: 1 }
+        },
+        failure: {
+          text: `You try to sneak along the far wall but kick a bottle in the dark. The sound ricochets off concrete. Heads turn. "Hey!" You don\u2019t wait — you run, feet pounding through puddles, and don\u2019t stop until you\u2019re a block clear.`,
+          statChanges: { stamina: -2, streetSmarts: -1 }
+        }
+      },
+      {
+        text: 'Approach the fire and ask to pass through',
+        statCheck: { stat: 'courage', difficulty: 12 },
+        success: {
+          text: `You walk up to the barrel fire and nod at the people around it. "Just passing through." An old man looks you over and shrugs. "Go ahead." You walk through their space with something like permission, and they go back to their conversation. Sometimes honesty is the bravest thing.`,
+          statChanges: { courage: 2, streetSmarts: 1 }
+        },
+        failure: {
+          text: `You approach the fire and open your mouth. The nearest person stands up — taller than you expected. "What do you want?" You stammer something about passing through. "Then pass," he says, but someone behind you grabs your jacket. You tear free and run, hearing laughter that follows you into the night.`,
+          statChanges: { courage: -2, stamina: -3 }
+        }
+      }
+    ]
+  },
+  {
+    id: 'followed-feeling',
+    title: 'Footsteps',
+    text: `You hear them a block back. Footsteps. Not loud — just present. Matching your pace. When you speed up, they speed up. When you stop at a crosswalk, they stop too. You glance back once and see a figure, hood up, fifty yards behind. Could be nothing. Could be everything.`,
+    choices: [
+      {
+        text: 'Duck into the next open business',
+        statCheck: { stat: 'streetSmarts', difficulty: 9 },
+        success: {
+          text: `You spot a 24-hour laundromat and slip inside. Through the glass you watch the hooded figure pass without slowing. Just someone walking the same direction. Or someone who realized you noticed. Either way, you wait five minutes in the warm hum of dryers before heading out.`,
+          statChanges: { streetSmarts: 1 }
+        },
+        failure: {
+          text: `You try the nearest door — locked. And the next. All closed. You end up standing in a doorway pretending to use your phone while the footsteps get closer. They pass you — a teenager in headphones, oblivious. But your nerves are shot.`,
+          statChanges: { courage: -1, stamina: -1 }
+        }
+      },
+      {
+        text: 'Stop and turn around to face them',
+        statCheck: { stat: 'courage', difficulty: 11 },
+        success: {
+          text: `You stop dead and turn around. The figure stops too. For a long moment you just stare at each other across the dark street. Then they turn and walk the other way. You\u2019ll never know what that was. But they know you\u2019re not an easy mark.`,
+          statChanges: { courage: 2 }
+        },
+        failure: {
+          text: `You spin around and the figure is closer than you thought — twenty feet, not fifty. Your courage evaporates. You turn and run, no strategy, no direction, just away. You zigzag through side streets for ten minutes before you feel safe enough to stop. You have no idea where you are.`,
+          statChanges: { courage: -2, stamina: -3, streetSmarts: -1 }
+        }
+      },
+      {
+        text: 'Cross the street and take three random turns',
+        statCheck: { stat: 'streetSmarts', difficulty: 10 },
+        success: {
+          text: `You cross mid-block, take a left, a right, another right. Counter-surveillance basics you read somewhere. After the third turn you stop and listen. Nothing. Just the city. You loop back to your route and keep walking, heart still going but mind steady.`,
+          statChanges: { streetSmarts: 2 }
+        },
+        failure: {
+          text: `You start taking random turns but panic sets in — left, left, right — you\u2019ve lost your route. The streets look wrong. Every shadow has footsteps. By the time you find a street sign you recognize, you\u2019ve burned through your remaining energy on pure fear.`,
+          statChanges: { stamina: -3, courage: -1 }
+        }
+      },
+      {
+        text: 'Run at them',
+        statCheck: { stat: 'courage', difficulty: 14 },
+        success: {
+          text: `Something snaps. Instead of running away, you run toward them — full sprint, no hesitation. The figure freezes, then turns and bolts. You chase for half a block before stopping, breathing hard, standing alone in the empty street. You scared them. The hunted became the hunter. Your hands are shaking but you\u2019re grinning.`,
+          statChanges: { courage: 3, stamina: 1 }
+        },
+        failure: {
+          text: `You charge toward the figure. They don\u2019t run. They don\u2019t even flinch. You skid to a stop ten feet away and realize this person is much bigger than you. They take a step forward. You turn and run — really run — until your lungs burn and your vision blurs. You collapse against a building, gasping, and don\u2019t move for five minutes.`,
+          statChanges: { stamina: -4, courage: -3 }
+        }
+      }
+    ]
+  },
+  {
+    id: 'dark-park',
+    title: 'The Park',
+    text: `Riverside Park stretches across your path — four blocks of walking trails, old trees, and total darkness. The park lights went out months ago and the city hasn\u2019t fixed them. Going around adds six blocks. Going through saves time and energy, if you can handle walking through a lightless park at midnight alone.`,
+    choices: [
+      {
+        text: 'Go around — the long way, the safe way',
+        success: {
+          text: `You take the sidewalk around the park. It\u2019s six extra blocks of concrete and your feet are screaming, but you can see every step under streetlights. Sometimes the price of safety is just more walking.`,
+          statChanges: { stamina: -3 }
+        }
+      },
+      {
+        text: 'Cut through on the main path',
+        statCheck: { stat: 'courage', difficulty: 11 },
+        success: {
+          text: `You find the main path and walk in. The canopy closes overhead and the city disappears. Just your footsteps and the rustle of leaves. You walk fast, guided by the pale strip of gravel underfoot, and emerge on the other side with your nerves jangling but your legs grateful.`,
+          statChanges: { stamina: 2, courage: 1 }
+        },
+        failure: {
+          text: `The path forks and in the dark you take the wrong branch. It narrows, turns to dirt, and dead-ends at a fence. You have to backtrack, stumbling over roots, and by the time you find the right path your shins are bruised and your nerves are in tatters.`,
+          statChanges: { stamina: -2, courage: -2 }
+        }
+      },
+      {
+        text: 'Navigate by the sound of the river',
+        statCheck: { stat: 'streetSmarts', difficulty: 11 },
+        success: {
+          text: `You listen. There — the river, to your left. You keep it at your shoulder and walk straight through, ignoring the paths entirely, cutting across grass and gravel. The river guides you like a compass and you pop out on the far side in half the time. Clever navigation.`,
+          statChanges: { stamina: 2, streetSmarts: 2 }
+        },
+        failure: {
+          text: `You try to follow the river but the sound bounces off the buildings and trees. You lose direction, wade through a muddy ditch, and eventually spot streetlights through the trees and stumble toward them. Your shoes are ruined, you\u2019re freezing, and you\u2019ve lost all sense of where you are.`,
+          statChanges: { stamina: -3, streetSmarts: -1 }
+        }
+      },
+      {
+        text: 'Sprint through the darkness — don\u2019t stop for anything',
+        statCheck: { stat: 'courage', difficulty: 13 },
+        success: {
+          text: `You take a breath and explode into a run. The dark swallows you whole. Branches whip your face, your feet pound blind on gravel, and every shadow screams threat. But you don\u2019t stop. Two minutes of pure terror and you\u2019re through — bursting into streetlight like coming up for air. You\u2019ve never felt more alive.`,
+          statChanges: { courage: 3, stamina: 3 }
+        },
+        failure: {
+          text: `You run blind and fast. Too fast. Your foot catches a tree root and you go airborne, landing face-first in wet grass. The wind goes out of you. You lie there in total darkness, unable to breathe, unable to see, the city a distant hum. When you finally get up, everything hurts. You limp to the nearest light in silence.`,
+          statChanges: { stamina: -5, courage: -2 }
+        }
+      }
+    ]
   }
 ];
 
 const EndingsData = {
-  failure: {
-    title: 'You Couldn\u2019t Go On',
-    text: `Your legs finally refuse. You sink onto a bus bench, every muscle spent, and pull out your phone \u2014 but the screen stays dark. Dead.
+  failure_early: {
+    title: 'Lost',
+    isFailure: true,
+    text: `Your legs go first. Then your vision narrows — the streetlights stretching into long smears of amber. You sit down on the curb because you can\u2019t not sit down. The concrete is cold and wet.
 
-You sit there in the cold, watching the occasional car drift past, until a rideshare driver notices you slumped on the bench and pulls over. \u201CYou alright?\u201D
+You try your phone. The screen flickers once, shows 1%, and dies in your hand.
 
-You get home eventually. But not on your own feet. Not tonight.
+The street name on the sign above you — you don\u2019t recognize it. You should recognize it. You\u2019ve lived in this city for two years. But everything looks wrong in the dark, from down here, when you can\u2019t stand up.
 
-The deadbolt clicks behind you. You lean against the door and slide to the floor. Tomorrow you\u2019ll be fine. But tonight, the city won.`
+A car passes. It doesn\u2019t slow down.
+
+You pull your jacket tighter and wait. For what, you\u2019re not sure. Your eyes are heavy. The city hums its low, indifferent hum. Somewhere, your apartment is warm and lit and locked.
+
+You close your eyes. Just for a moment.`
+  },
+  failure_mid: {
+    title: 'Stranger',
+    isFailure: true,
+    text: `You make it halfway. That\u2019s what you keep telling yourself as your legs finally give out on a bench in a neighborhood you barely know.
+
+You sit there, head in your hands, listening to your own breathing. A car door closes somewhere nearby. Footsteps approach — slow, deliberate. You don\u2019t have the energy to look up.
+
+\u201CHey. You okay?\u201D
+
+A voice. You can\u2019t tell if it\u2019s concerned or something else. You raise your head. A figure stands under the streetlight — face in shadow, hands in pockets. Behind them, a car idles with the headlights on.
+
+\u201CYou need a ride somewhere?\u201D
+
+Every instinct you have left is screaming two different things. But your legs won\u2019t carry you. Your phone is dead. You\u2019re sitting on a bench in the dark in a neighborhood with no name.
+
+You look at the car. You look at the figure.
+
+You\u2019re too tired to be afraid.`
+  },
+  failure_late: {
+    title: 'So Close',
+    isFailure: true,
+    text: `You can see it. Your building — the brick face, the green awning, the light in Mrs. Chen\u2019s window on the third floor. Two blocks away. Maybe three. Close enough to count windows.
+
+Your body doesn\u2019t care.
+
+Your right leg buckles first, then your left, and you go down on a bus stop bench like someone cut your strings. The metal is freezing. You can see your breath. You can see home.
+
+You try to stand. Your legs say no. Not a negotiation — a fact. You\u2019ve used everything you had, and this is where it ran out. Two blocks short. You can see your own window from here, dark and waiting.
+
+A bus pulls up. The driver opens the door and looks at you. You don\u2019t have bus fare. You don\u2019t have anything.
+
+The doors close. The bus pulls away.
+
+You sit there, staring at your building, close enough to throw a stone at it. The night settles around you like something with weight. You are so close. But close doesn\u2019t get you inside. Close doesn\u2019t lock the deadbolt.
+
+Close is just another word for not enough.`
   },
   triumphant: {
     title: 'Home',

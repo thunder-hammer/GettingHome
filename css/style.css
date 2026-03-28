@@ -371,6 +371,23 @@ body {
   color: var(--text-secondary);
 }
 
+/* High-risk choice indicator */
+.choice-btn.high-risk {
+  border-color: rgba(184, 58, 58, 0.4);
+  border-width: 1px;
+}
+
+.choice-btn.high-risk:hover:not(.disabled),
+.choice-btn.high-risk:focus-visible:not(.disabled) {
+  border-color: var(--danger);
+  background: rgba(184, 58, 58, 0.08);
+}
+
+.choice-btn.high-risk .choice-stat-req {
+  color: var(--danger);
+  opacity: 0.8;
+}
+
 /* ---- Resolution ---- */
 #resolution {
   margin: 1.5rem 0;
@@ -430,6 +447,35 @@ body {
 .ending-content .narrative-box {
   text-align: left;
   margin-bottom: 2rem;
+}
+
+/* ---- Failure Ending Effects ---- */
+.failure-ending .ending-content {
+  animation: failureFadeIn 2.5s ease forwards;
+}
+
+.failure-ending #ending-title {
+  color: var(--danger);
+  animation: failurePulse 4s ease-in-out infinite;
+}
+
+.failure-ending .narrative-box {
+  color: #a89e94;
+}
+
+.failure-ending #ending-stats .stat-line {
+  color: var(--text-dim);
+}
+
+@keyframes failureFadeIn {
+  0% { opacity: 0; }
+  40% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes failurePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
 }
 
 #ending-stats {
